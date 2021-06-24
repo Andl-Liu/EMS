@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    username: master
+    password: 123abcABC
+    url: jdbc:mysql://rm-bp16pqe9llm9kpqpe1o.mysql.rds.aliyuncs.com:3306/purchase_moudle_database
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    prefix: classpath:/static/
+
+

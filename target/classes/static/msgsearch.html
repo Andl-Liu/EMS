@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>信息查询</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+
+	<!-- Cookie -->
+	<script src="js/cookie.js"></script>
+    
+    <!-- App CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+
+</head> 
+
+<body class="app">
+
+	<script>
+		isInventory();
+	</script>
+
+    <header class="app-header fixed-top">
+      <div class="app-header-inner">
+        <div class="container-fluid py-2">
+          <div class="app-header-content">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto">
+    					<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+						    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+					    </a>
+              </div>
+              <!--//col-->
+              <div class="app-utilities col-auto"><!--//app-utility-item-->
+                
+                <!--//app-utility-item-->
+                <div class="app-utility-item app-user-dropdown dropdown">
+                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
+                  <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+                      
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="login.html">Log Out</a></li>
+                    </ul>
+                </div>
+                <!--//app-user-dropdown-->
+              </div>
+              <!--//app-utilities-->
+            </div>
+            <!--//row-->
+          </div>
+          <!--//app-header-content-->
+        </div>
+        <!--//container-fluid-->
+      </div>
+      <blockquote>&nbsp;<br>
+        <br>
+        <br>
+        <br>
+      </blockquote>
+      <!--//app-header-inner-->
+        <div id="app-sidepanel" class="app-sidepanel sidepanel-hidden"> 
+	        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+	        <div class="sidepanel-inner d-flex flex-column">
+		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+		        <div class="app-branding">
+		            <a class="app-logo" href="index.html"><img class="logo-icon mr-2" src="assets/images/app-logo.svg" alt="logo">MES相关采购管理模块	</a>		        </div>
+		        <!--//app-branding-->  
+			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+					    <li class="nav-item">
+					        
+					        <a class="nav-link" href="index.html">
+						        
+		                         <span class="nav-link-text">欢迎</span>					        </a><!--//nav-link-->
+					    </li>
+					    <!--//nav-item-->
+					    <li class="nav-item">
+					        
+					        <a class="nav-link" href="purrequest.html">
+						        
+		                         <span class="nav-link-text">采购申请</span>					        </a><!--//nav-link-->
+					    </li>
+					    <!--//nav-item-->
+					    <li class="nav-item">
+					        
+					        <a class="nav-link" href="pricelist.html">
+						        
+		                         <span class="nav-link-text">比价单</span>					        </a><!--//nav-link-->
+					    </li>
+					    <!--//nav-item-->
+					    <li class="nav-item has-submenu">
+					        
+					        <a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+						        
+		                         <span class="nav-link-text">采购单</span>					        </a><!--//nav-link-->
+					        <div id="submenu-1" class="collapse submenu submenu-1" data-parent="#menu-accordion">
+						        <ul class="submenu-list list-unstyled">
+							        <li class="submenu-item"><a class="submenu-link" href="purtabsearch.html">查询</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="purtabproduce.html">采购单生成</a></li>
+							        
+						        </ul>
+					        </div>
+				      </li><!--//nav-item-->
+					  <li class="nav-item">
+					        
+						<a class="nav-link active" href="msgsearch.html">
+							
+							 <span class="nav-link-text">信息查询</span>					        </a><!--//nav-link-->
+					</li>
+					    
+					  <li class="nav-item has-submenu">
+					        
+						<a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+							
+							 <span class="nav-link-text">退货</span>					        </a><!--//nav-link-->
+						<div id="submenu-3" class="collapse submenu submenu-3" data-parent="#menu-accordion">
+							<ul class="submenu-list list-unstyled">
+								<li class="submenu-item"><a class="submenu-link" href="wirttd.html">退货单填写</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="alttd.html">退货单状态修改</a></li>
+								
+							</ul>
+						</div>
+				  </li><!--//nav-item-->
+					    <!--//nav-item-->
+					    <li class="nav-item">
+					        
+					        <a class="nav-link" href="sup.html">
+						        
+		                         <span class="nav-link-text">供应商档案</span>					        </a><!--//nav-link-->
+					    </li>
+					    <!--//nav-item-->
+				    </ul><!--//app-menu-->
+			    </nav><!--//app-nav-->
+	        </div><!--//sidepanel-inner-->
+	    </div><!--//app-sidepanel-->
+    </header>
+    <!--//app-header-->
+
+	<div class="app-wrapper">
+
+		<div class="app-content pt-3 p-md-3 p-lg-4">
+			<div class="container">
+				<h1>信息查询</h1>
+				<form action="/messagesearch" target="iframe1">
+					<label for="sel1">请选择要查询的信息：</label>
+					<select name="type" class="form-select" id="sel1">
+						<option value="inf">采购信息</option>
+						<option value="req">采购申请</option>
+						<option value="ord">采购单</option>
+						<option value="cmp">比价单</option>
+						<option value="ret">退货单</option>
+					</select>
+					<button type="submit" class="btn btn-primary">查询</button>
+				</form>
+
+				<iframe name="iframe1" src="defaultshow.html" width="200" height="200" frameborder="0"></iframe>
+			</div>
+
+
+		</div><!--//app-content-->
+
+	</div><!--//app-wrapper-->
+						        
+ 
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    
+    <!-- Page Specific JS -->
+    <script src="assets/js/app.js"></script> 
+
+</body>
+</html> 
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+      <link rel="stylesheet" href="css/style.css">
+    <style>
+        .test1
+        {
+            width: 400px;
+            height: 550px;
+            margin: auto;
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            bottom: 250px;
+
+        }
+
+    </style>
+  
+</head>
+
+<body>
+<script language="JavaScript">
+    var c="[[${flag}]]";
+    //document.write("flag is ",c);
+    if(c==1)
+        alert("登陆失败");
+
+</script>
+
+<div style="relative:true">
+
+    <div ><h1 style="font-size: 60px;margin: auto;position: absolute;color: aliceblue;font-family: 楷体">MES相关采购管理系统</h1></div>
+    <div class="test1"  >
+        <div  style="position: absolute;margin: 0px 0px 0px 0px "><h1 style="font-size: 100px">Login</h1></div>
+        <div style="margin: 250px 0px 0px 0px">
+        <form action="/login" method="post">
+        <div >
+            <div  style="position: absolute;margin:5px 380px 0px 0px"><img src="image/账号.png" style="width: 40px;height: 40px" /></div>
+           <div style=" margin:0px 0px 0px 50px"><input class="input" type="text" name="id"placeholder="用户名"autocomplete="off" id="username"></div>
+        </div >
+        <div >
+            <div   style="position: absolute;margin:5px 380px 0px 0px"><img src="image/密码1.png" style="width: 40px;height: 40px" /></div>
+            <div style=" margin:0px 0px 0px 50px"><input class="input" type="password"name="Pswd"placeholder="密码" id="password"></div>
+        </div>
+        <div  style="width: 40px;height:40px;margin:20px 210px 80px">
+            <input type="image" src="image/登录灰色.png" style="width: 40px;height: 40px" value="go" onclick="a()">
+        </div>
+            </form>
+            </div>
+    </div>
+</div>
+
+    <div  id="container"> <canvas class="resizeDiv" id="waterfall"></canvas> <div> </div>
+<script type="text/javascript" src="js/pixi.min.js"></script>
+<script type="text/javascript" src="js/tinycolor.min.js"></script>
+  
+    <script  src="js/waterfall.js"></script>
+        <script>
+            function a()
+            {
+                // if(document.getElementById("username").value=="user1")
+                // {
+                //     if(document.getElementById("password").value=="123")
+                //     {
+                //         alert("登陆成功");
+                //     }
+                //     else
+                //     {
+                //         alert("登陆失败");
+                //     }
+                // }
+                // else
+                // {
+                //     alert("登陆失败");
+                // }
+            }
+        </script>
+    </div>
+</body>
+</html>
