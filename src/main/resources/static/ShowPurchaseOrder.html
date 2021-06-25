@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>采购单显示</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>采购单ID</th>
+        <th>对应采购信息ID</th>
+        <th>采购员账户</th>
+        <th>采购员名称</th>
+        <th>供应商</th>
+        <th>对供应商评价</th>
+        <th>是否带料</th>
+        <th>生成时间</th>
+        <th>完成时间</th>
+        <th>状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orderForDisplays:${orderForDisplays}">
+        <td th:text="${orderForDisplays.id}"></td>
+        <td th:text="${orderForDisplays.information_id}"></td>
+        <td th:text="${orderForDisplays.purchaser_id}"></td>
+        <td th:text="${orderForDisplays.purchaser_name}"></td>
+        <td th:text="${orderForDisplays.supplier_name}"></td>
+        <td th:text="${orderForDisplays.evaluation}"></td>
+        <td th:text="${orderForDisplays.material}"></td>
+        <td th:text="${orderForDisplays.time}"></td>
+        <td th:text="${orderForDisplays.completion_time}"></td>
+        <td th:text="${orderForDisplays.status}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -27,9 +27,9 @@ public class Comparison_list {
     @Column
     private Date completion_time;
     @Column
-    private int purchasera_id;
+    private int purchaser_id;
     @Column
-    private int requisition_id;
+    private String requisition_id;
     @Column
     private int status;
 
@@ -89,19 +89,19 @@ public class Comparison_list {
         this.completion_time = completion_time;
     }
 
-    public int getPurchasera_id() {
-        return purchasera_id;
+    public int getPurchaser_id() {
+        return purchaser_id;
     }
 
-    public void setPurchasera_id(int purchasera_id) {
-        this.purchasera_id = purchasera_id;
+    public void setPurchaser_id(int purchaser_id) {
+        this.purchaser_id = purchaser_id;
     }
 
-    public int getRequisition_id() {
+    public String getRequisition_id() {
         return requisition_id;
     }
 
-    public void setRequisition_id(int requisition_id) {
+    public void setRequisition_id(String requisition_id) {
         this.requisition_id = requisition_id;
     }
 

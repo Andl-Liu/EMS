@@ -1,12 +1,7 @@
 package com.example.ems.controller;
 
-import com.example.ems.entity.Purchase_information;
-import com.example.ems.entity.Purchase_requisition;
-import com.example.ems.entity.User;
-import com.example.ems.repository.Purchase_informationRepository;
-import com.example.ems.repository.Purchase_requisitionRepository;
-import com.example.ems.repository.UserRepository;
-import org.joda.time.DateTime;
+import com.example.ems.entity.*;
+import com.example.ems.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//用来展示采购申请
 class RequisitionForDisplay {
     private String id;
     private String type;
@@ -84,6 +80,7 @@ class RequisitionForDisplay {
     }
 }
 
+//用来展示采购信息
 class InformationForDisplay {
     private String id;
     private String name;
@@ -161,6 +158,231 @@ class InformationForDisplay {
     }
 }
 
+//用来展示采购单
+class OrderForDisplay {
+    private String id;
+    private Date time;
+    private String purchaser_id;
+    private String purchaser_name;
+    private Date  completion_time;
+    private Boolean material;
+    private int evaluation;
+    private String supplier_name;
+    private String status;
+    private String information_id;
+
+    public OrderForDisplay(Purchase_order p, String supplier_name, String purchaser_id, String purchaser_name) {
+        this.id = p.getId();
+        this.time = p.getTime();
+        this.completion_time = p.getCompletion_time();
+        this.material = p.getMaterial();
+        this.evaluation = p.getEvaluation();
+        this.information_id = p.getInformation_id();
+        this.purchaser_id = purchaser_id;
+        this.purchaser_name = purchaser_name;
+        this.supplier_name = supplier_name;
+        if(p.getStatus() == 0) {
+            this.status = "生成成功";
+        }
+        else if(p.getStatus() == 1) {
+            this.status = "未完成";
+        }
+        else {
+            this.status = "已完成";
+        }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getPurchaser_id() {
+        return purchaser_id;
+    }
+
+    public void setPurchaser_id(String purchaser_id) {
+        this.purchaser_id = purchaser_id;
+    }
+
+    public String getPurchaser_name() {
+        return purchaser_name;
+    }
+
+    public void setPurchaser_name(String purchaser_name) {
+        this.purchaser_name = purchaser_name;
+    }
+
+    public Date getCompletion_time() {
+        return completion_time;
+    }
+
+    public void setCompletion_time(Date completion_time) {
+        this.completion_time = completion_time;
+    }
+
+    public Boolean getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Boolean material) {
+        this.material = material;
+    }
+
+    public int getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(int evaluation) {
+        this.evaluation = evaluation;
+    }
+
+    public String getSupplier_name() {
+        return supplier_name;
+    }
+
+    public void setSupplier_name(String supplier_name) {
+        this.supplier_name = supplier_name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getInformation_id() {
+        return information_id;
+    }
+
+    public void setInformation_id(String information_id) {
+        this.information_id = information_id;
+    }
+}
+
+//用来展示比价单
+class ListForDisplay {
+    private String id;
+    private String name;
+    private double price1;
+    private String supplier1;
+    private double price2;
+    private String supplier2;
+    private double price3;
+    private String supplier3;
+    private Date time;
+    private Date completion_time;
+
+    public ListForDisplay(Comparison_list c, String name, String supplier1, double price1
+                                                        , String supplier2, double price2
+                                                        , String supplier3, double price3) {
+        this.id = c.getId();
+        this.name = name;
+        this.price1 = price1;
+        this.supplier1 = supplier1;
+        this.price2 = price2;
+        this.supplier2 = supplier2;
+        this.price3 = price3;
+        this.supplier3 = supplier3;
+        this.time = c.getTime();
+        this.completion_time = c.getCompletion_time();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice1() {
+        return price1;
+    }
+
+    public void setPrice1(double price1) {
+        this.price1 = price1;
+    }
+
+    public String getSupplier1() {
+        return supplier1;
+    }
+
+    public void setSupplier1(String supplier1) {
+        this.supplier1 = supplier1;
+    }
+
+    public double getPrice2() {
+        return price2;
+    }
+
+    public void setPrice2(double price2) {
+        this.price2 = price2;
+    }
+
+    public String getSupplier2() {
+        return supplier2;
+    }
+
+    public void setSupplier2(String supplier2) {
+        this.supplier2 = supplier2;
+    }
+
+    public double getPrice3() {
+        return price3;
+    }
+
+    public void setPrice3(double price3) {
+        this.price3 = price3;
+    }
+
+    public String getSupplier3() {
+        return supplier3;
+    }
+
+    public void setSupplier3(String supplier3) {
+        this.supplier3 = supplier3;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public Date getCompletion_time() {
+        return completion_time;
+    }
+
+    public void setCompletion_time(Date completion_time) {
+        this.completion_time = completion_time;
+    }
+
+}
+
 @Controller
 
 public class MessageSearchController {
@@ -170,12 +392,20 @@ public class MessageSearchController {
     Purchase_requisitionRepository purchase_requisitionRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    Purchase_orderRepository purchase_orderRepository;
+    @Autowired
+    SupplierRepsitory supplierRepsitory;
+    @Autowired
+    Comparison_listRepository comparison_listRepository;
+    @Autowired
+    Purchasable_productRepository purchasable_productRepository;
 
     @RequestMapping(value={"/messagesearch"})
     public ModelAndView getInformation(@RequestParam("type") String type) {
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println(type);
-        if(type.equals("inf")) {
+
+        if(type.equals("inf")) { //显示采购信息
             List<Purchase_information> purchase_informations = purchase_informationRepository.findAll();
             List<InformationForDisplay> informationForDisplays = new ArrayList<>();
             for(Purchase_information e : purchase_informations) {
@@ -185,7 +415,7 @@ public class MessageSearchController {
             modelAndView.setViewName("ShowPurchaseInformation");
 
         }
-        else if(type.equals("req")) {
+        else if(type.equals("req")) { //显示采购申请
             List<Purchase_requisition> purchase_requisitions = purchase_requisitionRepository.findAll();
             List<RequisitionForDisplay> requisitionForDisplays = new ArrayList<>();
             for(Purchase_requisition e : purchase_requisitions) {
@@ -196,11 +426,43 @@ public class MessageSearchController {
             modelAndView.setViewName("ShowPurchaseRequisition");
 
         }
-        else if(type.equals("ord")) {
-
+        else if(type.equals("ord")) { //显示采购单
+            List<Purchase_order> purchase_orders = purchase_orderRepository.findAll();
+            List<OrderForDisplay> orderForDisplays = new ArrayList<>();
+            for(Purchase_order e : purchase_orders) {
+                User user = userRepository.getById(e.getPurchaser_id());
+                Supplier supplier = supplierRepsitory.getById(e.getSupplier_id());
+                orderForDisplays.add(new OrderForDisplay(e, supplier.getName(), user.getAccount(), user.getName()));
+            }
+            modelAndView.addObject("orderForDisplays", orderForDisplays);
+            modelAndView.setViewName("ShowPurchaseOrder");
         }
-        else if(type.equals("cmp")) {
-
+        else if(type.equals("cmp")) { //显示比价单
+            List<Comparison_list> comparison_lists = comparison_listRepository.findAll();
+            List<ListForDisplay> listForDisplays = new ArrayList<>();
+            for(Comparison_list e : comparison_lists) {
+                Purchasable_product product1 = purchasable_productRepository.getById(e.getProduct_id1());
+                String s1 = supplierRepsitory.getById(product1.getSupplier_id()).getName();
+                double p1 = product1.getPrice();
+                String name = product1.getName();
+                String s2 = "";
+                double p2 = 0;
+                if(e.getSupplier_amount() > 1) {
+                    Purchasable_product product2 = purchasable_productRepository.getById(e.getProduct_id2());
+                    s2 = supplierRepsitory.getById(product2.getSupplier_id()).getName();
+                    p2 = product2.getPrice();
+                }
+                String s3 = "";
+                double p3 = 0;
+                if(e.getSupplier_amount() > 2) {
+                    Purchasable_product product3 = purchasable_productRepository.getById(e.getProduct_id3());
+                    s3 = supplierRepsitory.getById(product3.getSupplier_id()).getName();
+                    p3 = product3.getPrice();
+                }
+                listForDisplays.add(new ListForDisplay(e, name, s1, p1, s2, p2, s3, p3));
+            }
+            modelAndView.addObject("listForDisplays", listForDisplays);
+            modelAndView.setViewName("showComparison_list");
         }
         else if(type.equals("ret")) {
 

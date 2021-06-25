@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>比价单显示</title>
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>比价单ID</th>
+        <th>产品名称</th>
+        <th>供应商1</th>
+        <th>价格1</th>
+        <th>供应商2</th>
+        <th>价格2</th>
+        <th>供应商3</th>
+        <th>价格3</th>
+        <th>生成日期</th>
+        <th>批准日期</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listForDisplays:${listForDisplays}">
+        <td th:text="${listForDisplays.id}"></td>
+        <td th:text="${listForDisplays.name}"></td>
+        <td th:text="${listForDisplays.supplier1}"></td>
+        <td th:text="${listForDisplays.price1}"></td>
+        <td th:text="${listForDisplays.supplier2}"></td>
+        <td th:text="${listForDisplays.price2}"></td>
+        <td th:text="${listForDisplays.supplier3}"></td>
+        <td th:text="${listForDisplays.price3}"></td>
+        <td th:text="${listForDisplays.time}"></td>
+        <td th:text="${listForDisplays.completion_time}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
