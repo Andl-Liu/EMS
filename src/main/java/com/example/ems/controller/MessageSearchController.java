@@ -436,33 +436,10 @@ public class MessageSearchController {
             }
             modelAndView.addObject("orderForDisplays", orderForDisplays);
             modelAndView.setViewName("ShowPurchaseOrder");
+
         }
         else if(type.equals("cmp")) { //显示比价单
-            List<Comparison_list> comparison_lists = comparison_listRepository.findAll();
-            List<ListForDisplay> listForDisplays = new ArrayList<>();
-            for(Comparison_list e : comparison_lists) {
-                Purchasable_product product1 = purchasable_productRepository.getById(e.getProduct_id1());
-                String s1 = supplierRepsitory.getById(product1.getSupplier_id()).getName();
-                double p1 = product1.getPrice();
-                String name = product1.getName();
-                String s2 = "";
-                double p2 = 0;
-                if(e.getSupplier_amount() > 1) {
-                    Purchasable_product product2 = purchasable_productRepository.getById(e.getProduct_id2());
-                    s2 = supplierRepsitory.getById(product2.getSupplier_id()).getName();
-                    p2 = product2.getPrice();
-                }
-                String s3 = "";
-                double p3 = 0;
-                if(e.getSupplier_amount() > 2) {
-                    Purchasable_product product3 = purchasable_productRepository.getById(e.getProduct_id3());
-                    s3 = supplierRepsitory.getById(product3.getSupplier_id()).getName();
-                    p3 = product3.getPrice();
-                }
-                listForDisplays.add(new ListForDisplay(e, name, s1, p1, s2, p2, s3, p3));
-            }
-            modelAndView.addObject("listForDisplays", listForDisplays);
-            modelAndView.setViewName("showComparison_list");
+
         }
         else if(type.equals("ret")) {
 

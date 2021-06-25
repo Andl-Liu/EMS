@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 //@Table(name="比价单")
-@Table(name="comparison")
+@Table(name="comparison_list")
 public class Comparison_list {
     @Id
     private String id;
@@ -29,7 +29,7 @@ public class Comparison_list {
     @Column
     private int purchaser_id;
     @Column
-    private String requisition_id;
+    private String information_id;
     @Column
     private int status;
 
@@ -98,11 +98,11 @@ public class Comparison_list {
     }
 
     public String getRequisition_id() {
-        return requisition_id;
+        return information_id;
     }
 
-    public void setRequisition_id(String requisition_id) {
-        this.requisition_id = requisition_id;
+    public void setRequisition_id(String information_id) {
+        this.information_id = information_id;
     }
 
     public int getStatus() {
