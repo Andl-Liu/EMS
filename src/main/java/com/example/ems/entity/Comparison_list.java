@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 //@Table(name="比价单")
@@ -22,9 +23,9 @@ public class Comparison_list {
     @Column
     private int product_id3;
     @Column
-    private DateTime time;
+    private Date time;
     @Column
-    private DateTime completion_time;
+    private Date completion_time;
     @Column
     private int purchasera_id;
     @Column
@@ -72,19 +73,19 @@ public class Comparison_list {
         this.product_id3 = product_id3;
     }
 
-    public DateTime getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(DateTime time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
-    public DateTime getCompletion_time() {
+    public Date getCompletion_time() {
         return completion_time;
     }
 
-    public void setCompletion_time(DateTime completion_time) {
+    public void setCompletion_time(Date completion_time) {
         this.completion_time = completion_time;
     }
 

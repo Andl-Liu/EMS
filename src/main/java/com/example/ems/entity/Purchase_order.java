@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 //@Table(name="采购单")
@@ -14,11 +15,11 @@ public class Purchase_order {
     @Id
     private String id;
     @Column
-    private DateTime time;
+    private Date time;
     @Column
     private int purchaser_id;
     @Column
-    private DateTime completion_time;
+    private Date  completion_time;
     @Column
     private Boolean material;
     @Column
@@ -27,6 +28,8 @@ public class Purchase_order {
     private int supplier_id;
     @Column
     private int status;
+    @Column
+    String information_id;
 
     public String getId() {
         return id;
@@ -36,12 +39,28 @@ public class Purchase_order {
         this.id = id;
     }
 
-    public DateTime getTime() {
+    public String getInformation_id() {
+        return information_id;
+    }
+
+    public void setInformation_id(String information_id) {
+        this.information_id = information_id;
+    }
+
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(DateTime time) {
+    public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Date getCompletion_time() {
+        return completion_time;
+    }
+
+    public void setCompletion_time(Date completion_time) {
+        this.completion_time = completion_time;
     }
 
     public int getPurchaser_id() {
@@ -50,14 +69,6 @@ public class Purchase_order {
 
     public void setPurchaser_id(int purchaser_id) {
         this.purchaser_id = purchaser_id;
-    }
-
-    public DateTime getCompletion_time() {
-        return completion_time;
-    }
-
-    public void setCompletion_time(DateTime completion_time) {
-        this.completion_time = completion_time;
     }
 
     public Boolean getMaterial() {

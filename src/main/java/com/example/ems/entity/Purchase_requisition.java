@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 //@Table(name="采购申请")
@@ -16,7 +17,7 @@ public class Purchase_requisition {
         @Column
         private int type;
         @Column
-        private DateTime datetime;
+        private Date datetime;
         @Column
         private int planner_id;
 
@@ -36,11 +37,11 @@ public class Purchase_requisition {
         this.type = type;
     }
 
-    public DateTime getDatetime() {
+    public Date getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(DateTime datetime) {
+    public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
 

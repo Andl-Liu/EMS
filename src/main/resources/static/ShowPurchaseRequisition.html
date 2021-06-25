@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>采购申请显示</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>采购申请ID</th>
+        <th>采购类型</th>
+        <th>计划员账号</th>
+        <th>计划员名称</th>
+        <th>申请时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="requisitionForDisplays:${requisitionForDisplays}">
+        <td th:text="${requisitionForDisplays.id}"></td>
+        <td th:text="${requisitionForDisplays.type}"></td>
+        <td th:text="${requisitionForDisplays.Planner_id}"></td>
+        <td th:text="${requisitionForDisplays.Planner_name}"></td>
+        <td th:text="${requisitionForDisplays.date}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

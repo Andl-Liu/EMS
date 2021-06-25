@@ -21,6 +21,8 @@ public class Purchase_information {
    private String unit;
    @Column
    private String order_id;
+   @Column
+   private int  status;
 
    public String getOrder_id() {
       return order_id;
@@ -28,6 +30,14 @@ public class Purchase_information {
 
    public void setOrder_id(String order_id) {
       this.order_id = order_id;
+   }
+
+   public int getStatus() {
+      return status;
+   }
+
+   public void setStatus(int status) {
+      this.status = status;
    }
 
    public String getUnit() {

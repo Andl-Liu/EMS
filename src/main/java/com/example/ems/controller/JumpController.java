@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class JumpController {
 
-    @RequestMapping("/toMsgsearch")
+    @RequestMapping(value={"/msgsearch.html", "/toMsgsearch"})
     public String jumpToMsgsearch() {
         return "msgsearch.html";
     }

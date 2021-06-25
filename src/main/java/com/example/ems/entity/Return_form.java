@@ -5,10 +5,8 @@ import javafx.stage.Stage;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 //@Table(name="退货单")
@@ -23,9 +21,9 @@ public class Return_form  {
     @Column
     private Double amount;
     @Column
-    private DateTime time;
+    private Date time;
     @Column
-    private DateTime completion_time;
+    private Date completion_time;
     @Column
     private Boolean status;
 
@@ -61,19 +59,19 @@ public class Return_form  {
         this.amount = amount;
     }
 
-    public DateTime getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(DateTime time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
-    public DateTime getCompletion_time() {
+    public Date getCompletion_time() {
         return completion_time;
     }
 
-    public void setCompletion_time(DateTime completion_time) {
+    public void setCompletion_time(Date completion_time) {
         this.completion_time = completion_time;
     }
 
@@ -84,4 +82,8 @@ public class Return_form  {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+
+
+
 }
