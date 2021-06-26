@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>修改退货单信息</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -11,6 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
     <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
@@ -21,6 +22,12 @@
 </head>
 
 <body class="app">
+
+<script>
+    isLogin();
+    isInventory();
+</script>
+
 <header class="app-header fixed-top">
     <div class="app-header-inner">
         <div class="container-fluid py-2">
@@ -140,7 +147,52 @@
 <!--//app-header-->
 
 
+<div class="app-wrapper">
 
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container">
+            <h1>退货单状态修改</h1>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>退货单ID</th>
+                        <th>产品名</th>
+                        <th>规格</th>
+                        <th>数量</th>
+                        <th>单位</th>
+                        <th>供应商</th>
+                        <th>状态</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="returnFormForDisplays:${returnFormForDisplays}">
+                        <td th:text="${returnFormForDisplays.id}"></td>
+                        <td th:text="${returnFormForDisplays.name}"></td>
+                        <td th:text="${returnFormForDisplays.specification}"></td>
+                        <td th:text="${returnFormForDisplays.amount}"></td>
+                        <td th:text="${returnFormForDisplays.unit}"></td>
+                        <td th:text="${returnFormForDisplays.supplier}"></td>
+                        <td th:text="${returnFormForDisplays.status}"></td>
+                        <td>
+                            <a th:href="|/confirmReturn?id=${returnFormForDisplays.id}|">
+                                <button type="button" class="btn btn-primary">更改状态</button>
+                            </a>
+                            <a th:href="|/deleteReturn?id=${returnFormForDisplays.id}|">
+                                <button type="button" class="btn btn-secondary">删除</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div><!--//app-content-->
+
+</div><!--//app-wrapper-->
 
 <!-- Javascript -->
 <script src="assets/plugins/popper.min.js"></script>
