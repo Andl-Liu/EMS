@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>退货单显示</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>退货单ID</th>
+        <th>产品名称</th>
+        <th>产品规格</th>
+        <th>退货数量</th>
+        <th>单位</th>
+        <th>管理员账号</th>
+        <th>管理员名称</th>
+        <th>申请时间</th>
+        <th>完成时间</th>
+        <th>状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="formForDisplays:${formForDisplays}">
+        <td th:text="${formForDisplays.id}"></td>
+        <td th:text="${formForDisplays.name}"></td>
+        <td th:text="${formForDisplays.specification}"></td>
+        <td th:text="${formForDisplays.amount}"></td>
+        <td th:text="${formForDisplays.unit}"></td>
+        <td th:text="${formForDisplays.user_account}"></td>
+        <td th:text="${formForDisplays.user_name}"></td>
+        <td th:text="${formForDisplays.time}"></td>
+        <td th:text="${formForDisplays.completion_time}"></td>
+        <td th:text="${formForDisplays.status}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

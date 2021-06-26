@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -383,6 +385,117 @@ class ListForDisplay {
 
 }
 
+//用来展示退货单
+class FormForDisplay {
+    private String id;
+    private String user_account;
+    private String user_name;
+    private String name;
+    private String specification;
+    private String unit;
+    private Double amount;
+    private Date time;
+    private Date completion_time;
+    private String status;
+
+    public FormForDisplay(Return_form f, String user_account, String user_name, String name, String specification, String unit) {
+        this.unit = unit;
+        this.user_account = user_account;
+        this.user_name = user_name;
+        this.name = name;
+        this.specification = specification;
+        this.id = f.getId();
+        this.amount = f.getAmount();
+        this.time = f.getTime();
+        this.completion_time = f.getCompletion_time();
+        if(f.getStatus()) {
+            this.status = "已退货";
+        } else {
+            this.status = "已申请";
+        }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUser_account() {
+        return user_account;
+    }
+
+    public void setUser_account(String user_account) {
+        this.user_account = user_account;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public Date getCompletion_time() {
+        return completion_time;
+    }
+
+    public void setCompletion_time(Date completion_time) {
+        this.completion_time = completion_time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}
+
 @Controller
 
 public class MessageSearchController {
@@ -400,6 +513,8 @@ public class MessageSearchController {
     Comparison_listRepository comparison_listRepository;
     @Autowired
     Purchasable_productRepository purchasable_productRepository;
+    @Autowired
+    Return_formRepository return_formRepository;
 
     @RequestMapping(value={"/messagesearch"})
     public ModelAndView getInformation(@RequestParam("type") String type) {
@@ -475,7 +590,15 @@ public class MessageSearchController {
             modelAndView.setViewName("showComparison_list");
         }
         else if(type.equals("ret")) { //显示退货单
-
+            List<Return_form> return_forms = return_formRepository.findAll();
+            List<FormForDisplay> formForDisplays = new ArrayList<>();
+            for(Return_form e : return_forms) {
+                User user = userRepository.getById(e.getInventory_id());
+                Purchasable_product product = purchasable_productRepository.getById(e.getProduct_id());
+                formForDisplays.add(new FormForDisplay(e, user.getAccount(), user.getName(), product.getName(), product.getSpecification(), product.getUnit()));
+            }
+            modelAndView.addObject("formForDisplays", formForDisplays);
+            modelAndView.setViewName("ShowReturnForm");
         }
 
         return modelAndView;
