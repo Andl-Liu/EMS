@@ -97,11 +97,10 @@ public class Comparison_list {
         this.purchaser_id = purchaser_id;
     }
 
-    public String getRequisition_id() {
+    public String getInformation_id() {
         return information_id;
     }
-
-    public void setRequisition_id(String information_id) {
+    public void setInformation_id(String information_id) {
         this.information_id = information_id;
     }
 

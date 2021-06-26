@@ -430,6 +430,10 @@ public class MessageSearchController {
             List<Purchase_order> purchase_orders = purchase_orderRepository.findAll();
             List<OrderForDisplay> orderForDisplays = new ArrayList<>();
             for(Purchase_order e : purchase_orders) {
+                if(e.getPurchaser_id() == 0)
+                    continue;
+                if(e.getSupplier_id() == 0)
+                    continue;
                 User user = userRepository.getById(e.getPurchaser_id());
                 Supplier supplier = supplierRepsitory.getById(e.getSupplier_id());
                 orderForDisplays.add(new OrderForDisplay(e, supplier.getName(), user.getAccount(), user.getName()));
@@ -439,9 +443,38 @@ public class MessageSearchController {
 
         }
         else if(type.equals("cmp")) { //显示比价单
-
+            List<Comparison_list> comparison_lists = comparison_listRepository.findAll();
+            List<ListForDisplay> listForDisplays = new ArrayList<>();
+            for(Comparison_list e : comparison_lists) {
+                String name = "";
+                String s1 = "无";
+                String s2 = "无";
+                String s3 = "无";
+                double p1 = 0;
+                double p2 = 0;
+                double p3 = 0;
+                if(e.getSupplier_amount() > 0) {
+                    Purchasable_product product = purchasable_productRepository.getById(e.getProduct_id1());
+                    name = product.getName();
+                    p1 = product.getPrice();
+                    s1 = supplierRepsitory.getById(product.getSupplier_id()).getName();
+                }
+                if(e.getSupplier_amount() > 1) {
+                    Purchasable_product product = purchasable_productRepository.getById(e.getProduct_id2());
+                    p2 = product.getPrice();
+                    s2 = supplierRepsitory.getById(product.getSupplier_id()).getName();
+                }
+                if(e.getSupplier_amount() > 2) {
+                    Purchasable_product product = purchasable_productRepository.getById(e.getProduct_id3());
+                    p3 = product.getPrice();
+                    s3 = supplierRepsitory.getById(product.getSupplier_id()).getName();
+                }
+                listForDisplays.add(new ListForDisplay(e, name, s1, p1, s2, p2, s3, p3));
+            }
+            modelAndView.addObject("listForDisplays", listForDisplays);
+            modelAndView.setViewName("showComparison_list");
         }
-        else if(type.equals("ret")) {
+        else if(type.equals("ret")) { //显示退货单
 
         }
 
