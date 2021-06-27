@@ -1,155 +1,333 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title></title>
-    
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="description" content="">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
-    
-    <!-- FontAwesome JS-->
-    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
-    
-    <!-- App CSS -->  
-    <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+	<title></title>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</head> 
+	<meta name="description" content="">
+	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+	<link rel="shortcut icon" href="favicon.ico">
 
-<body class="app">   	
-    <header class="app-header fixed-top">
-      <div class="app-header-inner">
-        <div class="container-fluid py-2">
-          <div class="app-header-content">
-            <div class="row justify-content-between align-items-center">
-              <div class="col-auto">
-    					<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
-						    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
-					    </a>
-              </div>
-              <!--//col-->
-              <div class="app-utilities col-auto"><!--//app-utility-item-->
-                
-                <!--//app-utility-item-->
-                <div class="app-utility-item app-user-dropdown dropdown">
-                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
-                  <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                      
-                      <li>
-                        <hr class="dropdown-divider">
-                      </li>
-                      <li><a class="dropdown-item" href="login.html">Log Out</a></li>
-                    </ul>
-                </div>
-                <!--//app-user-dropdown-->
-              </div>
-              <!--//app-utilities-->
-            </div>
-            <!--//row-->
-          </div>
-          <!--//app-header-content-->
-        </div>
-        <!--//container-fluid-->
-      </div>
-      <blockquote>&nbsp;<br>
-        <br>
-        <br>
-        <br>
-      </blockquote>
-      <!--//app-header-inner-->
-        <div id="app-sidepanel" class="app-sidepanel sidepanel-hidden"> 
-	        <div id="sidepanel-drop" class="sidepanel-drop"></div>
-	        <div class="sidepanel-inner d-flex flex-column">
-		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
-		        <div class="app-branding">
-		            <a class="app-logo" href="index.html"><img class="logo-icon mr-2" src="assets/images/app-logo.svg" alt="logo">MES相关采购管理模块	</a>		        </div>
-		        <!--//app-branding-->  
-			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
-				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-					    <li class="nav-item">
-					        
-					        <a class="nav-link" href="index.html">
-						        
-		                         <span class="nav-link-text">欢迎</span>					        </a><!--//nav-link-->
-					    </li>
-					    <!--//nav-item-->
-					    <li class="nav-item">
-					        
-					        <a class="nav-link active" href="purrequest.html">
-						        
-		                         <span class="nav-link-text">采购申请</span>					        </a><!--//nav-link-->
-					    </li>
-					    <!--//nav-item-->
-					    <li class="nav-item">
-					        
-					        <a class="nav-link" href="pricelist.html">
-						        
-		                         <span class="nav-link-text">比价单</span>					        </a><!--//nav-link-->
-					    </li>
-					    <!--//nav-item-->
-					    <li class="nav-item has-submenu">
-					        
-					        <a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
-						        
-		                         <span class="nav-link-text">采购单</span>					        </a><!--//nav-link-->
-					        <div id="submenu-1" class="collapse submenu submenu-1" data-parent="#menu-accordion">
-						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link" href="purtabsearch.html">查询</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="purtabproduce.html">采购单生成</a></li>
-							        
-						        </ul>
-					        </div>
-				      </li><!--//nav-item-->
-					  <li class="nav-item">
-					        
-						<a class="nav-link" href="msgsearch.html">
-							
-							 <span class="nav-link-text">信息查询</span>					        </a><!--//nav-link-->
-					</li>
-					    
-					  <li class="nav-item has-submenu">
-					        
-						<a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
-							
-							 <span class="nav-link-text">退货</span>					        </a><!--//nav-link-->
-						<div id="submenu-3" class="collapse submenu submenu-3" data-parent="#menu-accordion">
-							<ul class="submenu-list list-unstyled">
-								<li class="submenu-item"><a class="submenu-link" href="wirttd.html">退货单填写</a></li>
-								<li class="submenu-item"><a class="submenu-link" href="alttd.html">退货单状态修改</a></li>
-								
+	<!-- FontAwesome JS-->
+	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+
+	<!-- Cookie -->
+	<script src="js/cookie.js"></script>
+
+	<!-- App CSS -->
+	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+<body class="app">
+
+<script>
+	isLogin();
+	isPlanner();
+</script>
+
+<script language="JavaScript">
+	var c="[[${c}]]";
+	//document.write("flag is ",c);
+	if(c == 1 )
+		alert("添加失败");
+	else if(c>=1)
+		alert("成功添加"+(c-1)+"条");
+</script>
+
+<header class="app-header fixed-top">
+	<div class="app-header-inner">
+		<div class="container-fluid py-2">
+			<div class="app-header-content">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-auto">
+						<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+						</a>
+					</div>
+					<div class="app-utilities col-auto"><!--//app-utility-item-->
+
+						<div class="app-utility-item app-user-dropdown dropdown">
+							<a class="dropdown-toggle" id="user-dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
+							<ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="login.html">Log Out</a></li>
 							</ul>
 						</div>
-				  </li><!--//nav-item-->
-					    <!--//nav-item-->
-					    <li class="nav-item">
-					        
-					        <a class="nav-link" href="sup.html">
-						        
-		                         <span class="nav-link-text">供应商档案</span>					        </a><!--//nav-link-->
-					    </li>
-					    <!--//nav-item-->
-				    </ul><!--//app-menu-->
-			    </nav><!--//app-nav-->
-	        </div><!--//sidepanel-inner-->
-	    </div><!--//app-sidepanel-->
-    </header>
-    <!--//app-header-->
-    
-    	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<blockquote>&nbsp;<br>
+		<br>
+		<br>
+		<br>
+	</blockquote>
 
- 
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    
-    
-    <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script> 
+	<div id="app-sidepanel" class="app-sidepanel sidepanel-hidden">
+		<div id="sidepanel-drop" class="sidepanel-drop"></div>
+		<div class="sidepanel-inner d-flex flex-column">
+			<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+			<div class="app-branding">
+				<a class="app-logo" href="index.html"><img class="logo-icon mr-2" src="assets/images/app-logo.svg" alt="logo">MES相关采购管理模块</a>
+			</div>
+			<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">
+							<span class="nav-link-text">欢迎</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="/purrequest">
+							<span class="nav-link-text">采购申请</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/showComparisonGenerator">
+							<span class="nav-link-text">比价单</span>
+						</a>
+					</li>
+					<li class="nav-item has-submenu">
+						<a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+							<span class="nav-link-text">采购单</span>
+						</a>
+						<div id="submenu-1" class="collapse submenu submenu-1" data-parent="#menu-accordion">
+							<ul class="submenu-list list-unstyled">
+								<li class="submenu-item"><a class="submenu-link" href="/purtabsearch">查询</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="/purtabproduce">采购单生成</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/toMsgsearch">
+							<span class="nav-link-text">信息查询</span>
+						</a>
+					</li>
+					<li class="nav-item has-submenu">
+						<a class="nav-link submenu-toggle" href="#" data-toggle="collapse" data-target="#submenu-3" aria-expanded="false" aria-controls="submenu-3">
+							<span class="nav-link-text">退货</span>
+						</a>
+						<div id="submenu-3" class="collapse submenu submenu-3" data-parent="#menu-accordion">
+							<ul class="submenu-list list-unstyled">
+								<li class="submenu-item"><a class="submenu-link" href="/wirttd">退货单填写</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="/alterReturnForm">退货单状态修改</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/suppliers">
+							<span class="nav-link-text">供应商档案</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+<div class="app-wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading" style="color: #1b1e21; font-size: xxx-large; text-align: center; font-family: SimSun;" >
+					采购申请单
+				</header>
+				<form name="input" action="caigoushenqing" method="post">
+				<div class="dropdown" >
+					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" name="lx" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						新增
+					</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<a class="dropdown-item" href="#">外协生产粗计划(W)</a>
+						<a class="dropdown-item" href="#">自制转外协生产单(Z)</a>
+						<a class="dropdown-item" href="#">原材料采购申请(Y)</a>
+						<a class="dropdown-item" href="#">配套件采购申请(P)</a>
+					</div>
+				</div>
+
+				<div class="panel-body">
+					<div class="adv-table editable-table ">
+						<table class="table table-striped table-hover table-bordered" id="editable-sample" >
+							<thead>
+							<tr>
+								<th>采购类型</th>
+								<th>名称</th>
+								<th>规格</th>
+								<th>数量</th>
+								<th>单位</th>
+								<th>删除</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr class="">
+								<td>
+								</td>
+								<td>
+									<select class="form-control" name="mc1">
+										<option th:each="purproduct:${purproduct}"
+											th:value="${purproduct.name}"
+											th:text="${purproduct.name}">
+										</option>
+									</select>
+								</td>
+								<td>
+									<select class="form-control" name="gg1">
+										<!--/*@thymesVar id="specification" type="aj"*/-->
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.specification}"
+												th:text="${purproduct.specification}">
+										</option>
+									</select>
+								</td>
+								<td>
+<!--									<select class="form-control">-->
+<!--									</select>-->
+									<input class="form-control" style="width: 100%" type="text" name="sl1">
+								</td>
+								<td>
+									<select class="form-control" name="dw1">
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.unit}"
+												th:text="${purproduct.unit}">
+										</option>
+									</select>
+								</td>
+								<td><a class="delete" href="javascript:;">Delete</a></td>
+							</tr>
+							<tr class="">
+								<td>
+								</td>
+								<td>
+									<select class="form-control" name="mc2">
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.name}"
+												th:text="${purproduct.name}">
+										</option>
+									</select>
+								</td>
+								<td>
+									<select class="form-control" name="gg2">
+										<!--/*@thymesVar id="specification" type="aj"*/-->
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.specification}"
+												th:text="${purproduct.specification}">
+										</option>
+									</select>
+								</td>
+								<td>
+									<!--									<select class="form-control">-->
+									<!--									</select>-->
+									<input class="form-control" style="width: 100%" type="text" name="sl2">
+								</td>
+								<td>
+									<select class="form-control" name="dw2">
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.unit}"
+												th:text="${purproduct.unit}">
+										</option>
+									</select>
+								</td>
+								<td><a class="delete" href="javascript:;">Delete</a></td>
+							</tr>
+							<tr class="">
+								<td>
+								</td>
+								<td>
+									<select class="form-control" name="mc3">
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.name}"
+												th:text="${purproduct.name}">
+										</option>
+									</select>
+								</td>
+								<td>
+									<select class="form-control" name="gg3">
+										<!--/*@thymesVar id="specification" type="aj"*/-->
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.specification}"
+												th:text="${purproduct.specification}">
+										</option>
+									</select>
+								</td>
+								<td>
+									<!--									<select class="form-control">-->
+									<!--									</select>-->
+									<input class="form-control" style="width: 100%" type="text" name="sl3">
+								</td>
+								<td>
+									<select class="form-control" name="dw3">
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.unit}"
+												th:text="${purproduct.unit}">
+										</option>
+									</select>
+								</td>
+								<td><a class="delete" href="javascript:;">Delete</a></td>
+							</tr><tr class="">
+								<td>
+								</td>
+								<td>
+									<select class="form-control" name="mc4">
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.name}"
+												th:text="${purproduct.name}">
+										</option>
+									</select>
+								</td>
+								<td>
+									<select class="form-control" name="gg4">
+										<!--/*@thymesVar id="specification" type="aj"*/-->
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.specification}"
+												th:text="${purproduct.specification}">
+										</option>
+									</select>
+								</td>
+								<td>
+									<!--									<select class="form-control">-->
+									<!--									</select>-->
+									<input class="form-control" style="width: 100%" type="text" name="sl4">
+								</td>
+								<td>
+									<select class="form-control" name="dw4">
+										<option th:each="purproduct:${purproduct}"
+												th:value="${purproduct.unit}"
+												th:text="${purproduct.unit}">
+										</option>
+									</select>
+								</td>
+								<td><a class="delete" href="javascript:;">Delete</a></td>
+							</tr>
+							</tbody>
+						</table>
+						<button type="" style="float: right; background: #0da95f; width: 100px; height: 40px">提交 </button>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<!-- Javascript -->
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Page Specific JS -->
+<script src="assets/js/app.js"></script>
 
 </body>
-</html> 
+</html>
 

@@ -11,10 +11,13 @@
 //    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler)throws Exception{
 //
 //        //登录成功之后应该有用户的session
-//       Object loginUser= request.getSession().getAttribute("loginUser");
-//        if(loginUser==null){
+//      // Object loginUser= request.getSession().getAttribute("loginUser");
+//        Object loginUser=request.getParameter("id");
+//        Object pswd=request.getParameter("Pswd");
+//        if(loginUser==null||pswd==null){
+//            //System.out.println(loginUser);
 //            request.setAttribute("msg","没有权限，请先登录");
-//            request.getRequestDispatcher("/loginpage.html").forward(request,response);
+//            //request.getRequestDispatcher("/loginpage.html").forward(request,response);
 //
 //            return false;
 //        }

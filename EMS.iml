@@ -16,7 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="EMS" />
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="entityManagerFactory" value="98d351bb-0db9-4102-878b-254dca707841" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

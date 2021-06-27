@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<!--<html lang="en"  xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
     
@@ -14,13 +15,22 @@
     
     <!-- FontAwesome JS-->
     <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+
+	<!-- Cookie -->
+	<script src="js/cookie.js"></script>
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 
 </head> 
 
-<body class="app">   	
+<body class="app">
+
+<script>
+	isLogin();
+	isPurchaser();
+</script>
+
     <header class="app-header fixed-top">
       <div class="app-header-inner">
         <div class="container-fluid py-2">
@@ -79,14 +89,14 @@
 					    <!--//nav-item-->
 					    <li class="nav-item">
 					        
-					        <a class="nav-link" href="purrequest.html">
+					        <a class="nav-link" href="/purrequest">
 						        
 		                         <span class="nav-link-text">采购申请</span>					        </a><!--//nav-link-->
 					    </li>
 					    <!--//nav-item-->
 					    <li class="nav-item">
 					        
-					        <a class="nav-link" href="pricelist.html">
+					        <a class="nav-link" href="/showComparisonGenerator">
 						        
 		                         <span class="nav-link-text">比价单</span>					        </a><!--//nav-link-->
 					    </li>
@@ -98,15 +108,15 @@
 		                         <span class="nav-link-text">采购单</span>					        </a><!--//nav-link-->
 					        <div id="submenu-1" class="collapse submenu submenu-1 show" data-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link active" href="purtabsearch.html">查询</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="purtabproduce.html">采购单生成</a></li>
+							        <li class="submenu-item"><a class="submenu-link active" href="/purtabsearch">查询</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="/purtabproduce">采购单生成</a></li>
 							        
 						        </ul>
 					        </div>
 				      </li><!--//nav-item-->
 					  <li class="nav-item">
 					        
-						<a class="nav-link" href="msgsearch.html">
+						<a class="nav-link" href="/toMsgsearch">
 							
 							 <span class="nav-link-text">信息查询</span>					        </a><!--//nav-link-->
 					</li>
@@ -118,8 +128,8 @@
 							 <span class="nav-link-text">退货</span>					        </a><!--//nav-link-->
 						<div id="submenu-3" class="collapse submenu submenu-3" data-parent="#menu-accordion">
 							<ul class="submenu-list list-unstyled">
-								<li class="submenu-item"><a class="submenu-link" href="wirttd.html">退货单填写</a></li>
-								<li class="submenu-item"><a class="submenu-link" href="alttd.html">退货单状态修改</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="/wirttd">退货单填写</a></li>
+								<li class="submenu-item"><a class="submenu-link" href="/alterReturnForm">退货单状态修改</a></li>
 								
 							</ul>
 						</div>
@@ -127,7 +137,7 @@
 					    <!--//nav-item-->
 					    <li class="nav-item">
 					        
-					        <a class="nav-link" href="sup.html">
+					        <a class="nav-link" href="/suppliers">
 						        
 		                         <span class="nav-link-text">供应商档案</span>					        </a><!--//nav-link-->
 					    </li>
@@ -138,11 +148,61 @@
 	    </div><!--//app-sidepanel-->
     </header>
     <!--//app-header-->
-    				       
-	     					
 
- 
-    <!-- Javascript -->          
+
+	<div class="app-wrapper" style="background-color:rgb( 204, 238, 255)" >
+		            <h2 align="center" style="color:green">采购单信息</h2>
+
+					<table border="1" width="100%">
+						<tr> <th>采购单id</th> <th>采购单发出时间</th> <th>采购完成时间</th> <th>采购员id</th> <th>采购信息id</th>  <th>是否带物料</th> <th>供应商id</th><th>已有供应商评价</th><th>订单状态</th> <th>修改订单状态</th><th>修改供应商评价（1-10级）</th> <th></th>   </tr>
+						<tr th:each="search:${search}">
+							<form role="form" action="search" method="post">
+							<td th:text="${search.id}" name="id" style="background-color:rgb(102 ,255, 204)" ></td>
+								<input type="hidden" name="id" th:value="${search.id}">
+							<td th:text="${search.time}" style="background-color:rgb( 102 ,255 ,255)" ></td>
+							<td th:text="${search.completion_time}" style="background-color:rgb( 102 ,255 ,204 )" ></td>
+							<td th:text="${search.purchaser_id}" style="background-color:rgb( 102 ,255 ,255)" ></td>
+							<td th:text="${search.information_id}" style="background-color:rgb( 102 ,255 ,204)" ></td>
+							<td th:text="${search.material}" style="background-color:rgb( 102 ,255 ,255)" ></td>
+							<td th:text="${search.purchaser_id}" style="background-color:rgb( 102 ,255 ,204)" ></td>
+								<td th:text="${search.evaluation}" style="background-color:rgb( 102 ,255 ,255)" ></td>
+								<td th:text="${search.status}" style="background-color:rgb( 102 ,255 ,204)" ></td>
+							<td>
+								<div class="form-group">
+									<select class="form-control"  name="status">
+										<option value="0">未开始</option>
+										<option value="1">未完成</option>
+										<option value="2">已完成</option>
+									</select>
+								</div>
+							</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control"  name="evaluation">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+							</td>
+
+						<td><button type="submit" class="btn btn-success">保存</button></td>
+							</form>
+						</tr>
+						</form>
+					</table>
+	</div>
+
+
+			<!-- Javascript -->
+
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
     
