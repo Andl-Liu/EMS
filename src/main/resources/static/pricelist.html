@@ -24,6 +24,12 @@
 </head>
 
 <body class="app">
+
+<script>
+	isLogin();
+	isPurchaser();
+</script>
+
 <header class="app-header fixed-top">
 	<div class="app-header-inner" >
 		<div class="container-fluid py-2">
@@ -164,52 +170,54 @@
 				</thead>
 				<tbody>
 				<tr th:each="comparisonForDisplays:${comparisonForDisplays}">
-					<td th:text="${comparisonForDisplays.id}"></td>
-					<td th:text="${comparisonForDisplays.name}"></td>
-					<td th:text="${comparisonForDisplays.specification}"></td>
-					<td th:text="${comparisonForDisplays.amount}"></td>
-					<td th:text="${comparisonForDisplays.unit}"></td>
-					<td>
-						<select class="form-select" th:name="|${comparisonForDisplays.id}_supplier_amount|">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-					</td>
-					<td>
-						<select class="form-select" th:name="|${comparisonForDisplays.id}_supplier1|">
-							<option th:each="product_id:${comparisonForDisplays.product_id}" th:value="${product_id}">
-								<div th:each="map:${comparisonForDisplays.suppliers}"
-									 th:if="${map.key} == ${product_id}"
-									 th:text="${map.value}"></div>
-							</option>
-						</select>
-					</td>
-					<td>
-						<select class="form-select" th:name="|${comparisonForDisplays.id}_supplier2|">
-							<option value="" selected></option>
-							<option th:each="product_id:${comparisonForDisplays.product_id}" th:value="${product_id}">
-								<div th:each="map:${comparisonForDisplays.suppliers}"
-									 th:if="${map.key} == ${product_id}"
-									 th:text="${map.value}"></div>
-							</option>
-						</select>
-					</td>
-					<td>
-						<select class="form-select" th:name="|${comparisonForDisplays.id}_supplier3|">
-							<option value="" selected></option>
-							<option th:each="product_id:${comparisonForDisplays.product_id}" th:value="${product_id}">
-								<div th:each="map:${comparisonForDisplays.suppliers}"
-									 th:if="${map.key} == ${product_id}"
-									 th:text="${map.value}"></div>
-							</option>
-						</select>
-					</td>
-					<td>
-						<a>
-							<button type="button" class="btn btn-primary">提交</button>
-						</a>
-					</td>
+					<form action="/submitComparison">
+
+						<td th:text="${comparisonForDisplays.id}"></td>
+						<td th:text="${comparisonForDisplays.name}"></td>
+						<td th:text="${comparisonForDisplays.specification}"></td>
+						<td th:text="${comparisonForDisplays.amount}"></td>
+						<td th:text="${comparisonForDisplays.unit}"></td>
+						<td>
+							<select class="form-select" name="amount">
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-select" name="supplier1">
+								<option th:each="product_id:${comparisonForDisplays.product_id}" th:value="${product_id}">
+									<div th:each="map:${comparisonForDisplays.suppliers}"
+										 th:if="${map.key} == ${product_id}"
+										 th:text="${map.value}"></div>
+								</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-select" name="supplier2">
+								<option value="" selected></option>
+								<option th:each="product_id:${comparisonForDisplays.product_id}" th:value="${product_id}">
+									<div th:each="map:${comparisonForDisplays.suppliers}"
+										 th:if="${map.key} == ${product_id}"
+										 th:text="${map.value}"></div>
+								</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-select" name="supplier3">
+								<option value="" selected></option>
+								<option th:each="product_id:${comparisonForDisplays.product_id}" th:value="${product_id}">
+									<div th:each="map:${comparisonForDisplays.suppliers}"
+										 th:if="${map.key} == ${product_id}"
+										 th:text="${map.value}"></div>
+								</option>
+							</select>
+						</td>
+						<td>
+							<input type="hidden" name="id" th:value="${comparisonForDisplays.id}">
+							<input type="submit" value="提交">
+						</td>
+					</form>
 				</tr>
 				</tbody>
 			</table>

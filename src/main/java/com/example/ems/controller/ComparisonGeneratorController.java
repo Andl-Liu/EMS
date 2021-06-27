@@ -1,20 +1,19 @@
 package com.example.ems.controller;
 
-import com.example.ems.entity.Purchasable_product;
-import com.example.ems.entity.Purchase_information;
-import com.example.ems.entity.Supplier;
-import com.example.ems.repository.Purchasable_productRepository;
-import com.example.ems.repository.Purchase_informationRepository;
-import com.example.ems.repository.SupplierRepsitory;
+import com.example.ems.entity.*;
+import com.example.ems.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 class ComparisonForDisplay{
     private String id;
@@ -95,11 +94,15 @@ class ComparisonForDisplay{
 @Controller
 public class ComparisonGeneratorController {
     @Autowired
+    UserRepository userRepository;
+    @Autowired
     Purchase_informationRepository purchase_informationRepository;
     @Autowired
     Purchasable_productRepository purchasable_productRepository;
     @Autowired
     SupplierRepsitory supplierRepsitory;
+    @Autowired
+    Comparison_listRepository comparison_listRepository;
 
     @RequestMapping("/showComparisonGenerator")
     public ModelAndView show(){
@@ -123,6 +126,61 @@ public class ComparisonGeneratorController {
         modelAndView.addObject("comparisonForDisplays", comparisonForDisplays);
         modelAndView.setViewName("pricelist");
         return modelAndView;
+    }
+
+    private String getCharAndNumber(int length) {
+        Random random = new Random();
+        StringBuffer valSb = new StringBuffer();
+        String charStr = "0123456789abcdefghijklmnopqrstuvwxyz";
+        int charLength = charStr.length();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(charLength);
+            valSb.append(charStr.charAt(index));
+        }
+        return valSb.toString();
+    }
+
+    @RequestMapping("/submitComparison")
+    public String submit(HttpServletRequest request) {
+        Comparison_list comparison_list = new Comparison_list();
+        Date date = new Date();
+        date.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        comparison_list.setId(sdf.format(date) + getCharAndNumber(4));
+        comparison_list.setInformation_id(request.getParameter("id"));
+        comparison_list.setStatus(0);
+        comparison_list.setTime(date);
+        comparison_list.setSupplier_amount(Integer.valueOf(request.getParameter("amount")));
+        Cookie [] cookies = request.getCookies();
+        String user_account = "";
+        if(cookies != null) {
+            for(Cookie cookie : cookies) {
+                if(cookie.getName().equals("user_id")) {
+                    user_account = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        List<User> users = userRepository.findAll();
+        for(User user : users) {
+            if(user.getAccount().equals(user_account)) {
+                comparison_list.setPurchaser_id(user.getId());
+            }
+        }
+        if(comparison_list.getSupplier_amount() > 0)
+            comparison_list.setProduct_id1(Integer.valueOf(request.getParameter("supplier1")));
+        if(comparison_list.getSupplier_amount() > 1)
+            comparison_list.setProduct_id1(Integer.valueOf(request.getParameter("supplier2")));
+        if(comparison_list.getSupplier_amount() > 2)
+            comparison_list.setProduct_id1(Integer.valueOf(request.getParameter("supplier3")));
+        comparison_listRepository.save(comparison_list);
+
+        Purchase_information information = purchase_informationRepository.getById(request.getParameter("id"));
+        information.setStatus(1);
+        purchase_informationRepository.save(information);
+
+        return "redirect:/showComparisonGenerator";
     }
 
 }
